@@ -36,7 +36,7 @@ int solve(int n, vector<int>& height, int k) {
 
 // Driver code
 int main() {
-    // Heights of stones
+    
     vector<int> height{30, 10, 60, 10, 60, 50};
     int n = height.size();
     int k = 2;
