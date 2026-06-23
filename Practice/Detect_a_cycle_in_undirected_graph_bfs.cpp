@@ -4,7 +4,7 @@ private:
     bool detect(int src, vector<vector<int>>& adj, vector<int>& vis) {
         vis[src] = 1;
 
-        queue<pair<int,int>> q;
+        queue<pii> q;
         q.push({src, -1});
 
         while(!q.empty()) {
