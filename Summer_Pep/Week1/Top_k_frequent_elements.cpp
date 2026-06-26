@@ -1,19 +1,29 @@
-Top K Frequent Elements
-Input
-nums = [1,1,1,2,2,3]
-k = 2
-Output
-[1,2]
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> top (vector<int>&nums,int k){
-    unordered_map<int,int>freq;
-    for(int x:nums){
-        freq++;
-    }
-    vector<pair<int,int>>a;
-    for(auto it: freq){
-        arr.push_back(it.second,it.first);
-    }
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> mp;
+
     
-}
+        for (int x : nums)
+            mp[x]++;
+
+        vector<vector<int>> bucket(nums.size() + 1);
+
+        for (auto it : mp)
+            bucket[it.second].push_back(it.first);
+
+        vector<int> ans;
+        for (int i = nums.size(); i >= 1 && ans.size() < k; i--) {
+            for (int x : bucket[i]) {
+                ans.push_back(x);
+                if (ans.size() == k)
+                    break;
+            }
+        }
+
+        return ans;
+    }
+};
