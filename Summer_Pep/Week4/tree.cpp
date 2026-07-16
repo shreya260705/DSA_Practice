@@ -37,7 +37,42 @@ void inorder(Node* root){
     inorder(root->right);
    
 }
+int count(Node* root){
+    if(root==NULL) return  0;
+    return count(root->left)+count(root->right)+1;
+}
+int countleaf(Node* root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL){
+        return 1;
+    }
+    return countleaf(root->left)+countleaf(root->right);
+}
+vector<vector<int>> levelOrder(TreeNode* root) {
+           vector<vector<int>> result;
+        if (!root) return result;
 
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int levelSize = q.size();
+            vector<int> level;
+
+            for (int i = 0; i < levelSize; ++i) {
+                TreeNode* current = q.front();
+                q.pop();
+                level.push_back(current->val);
+
+                if (current->left) q.push(current->left);
+                if (current->right) q.push(current->right);
+            }
+
+            result.push_back(level);
+        }
+
+        return result;
+    }
 int main() {
 
 
